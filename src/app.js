@@ -16,7 +16,6 @@ function makeData() {
 
   for (var row = 0; row < 5; row++) {
 
-    // col
     for (var i = 0; i < NUM_COLUMNS; i++) {
       var x = (i * WIDTH) + RADIUS;
       var y = (row * WIDTH) + RADIUS;
