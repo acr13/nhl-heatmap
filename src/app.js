@@ -3,36 +3,39 @@
 // of shots taken at that target, and how
 // often they result in a goal.
 
-function init() {
-  var net = [];
-  var GRID_SIZE = 10;
+// each point is a list of the form
+// [x, y, value]
 
-  for (var row = 0; row < GRID_SIZE; row++) {
-    net[row] = [];
+// 600 x 400 = 240,000
+function makeData() {
+  var data = [];
 
-    for (var column = 0; column < GRID_SIZE; column++) {
-      net[row][column] = Math.random().toFixed(2);
+  var RADIUS = 45;
+  var WIDTH = RADIUS * 2;
+  var NUM_COLUMNS = Math.ceil(600 / WIDTH);
+
+  for (var row = 0; row < 5; row++) {
+
+    // col
+    for (var i = 0; i < NUM_COLUMNS; i++) {
+      var x = (i * WIDTH) + RADIUS;
+      var y = (row * WIDTH) + RADIUS;
+
+      data.push([ x, y, Math.random() ]);
     }
   }
 
-  // convert this gird into an html grid
-  var htmlNet = document.getElementsByClassName('net')[0];
-
-  for (row = 0; row < GRID_SIZE; row++) {
-
-    var netRow = document.createElement('div');
-    netRow.className = 'row';
-
-    for (var column = 0; column < GRID_SIZE; column++) {
-      var cell = document.createElement('div');
-      cell.innerHTML = net[row][column];
-      netRow.appendChild(cell);
-    }
-
-    htmlNet.appendChild(netRow);
-  }
+  return data;
 }
 
-document.addEventListener("DOMContentLoaded", function(event) {
-  init();
-});
+function drawHeatmap() {
+  var data = makeData();
+
+  var heat = simpleheat('canvas')
+    .radius(45, 60)
+    .data(data);
+
+  heat.draw();
+}
+
+drawHeatmap();
