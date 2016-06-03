@@ -4,7 +4,9 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "watch": "nodemon index.js -e js",
+    "start": "node index.js"
   },
   "repository": {
     "type": "git",
@@ -19,5 +21,9 @@
   "bugs": {
     "url": "https://github.com/acr13/nhl-heatmap/issues"
   },
-  "homepage": "https://github.com/acr13/nhl-heatmap#readme"
+  "homepage": "https://github.com/acr13/nhl-heatmap#readme",
+  "dependencies": {
+    "express": "4.13.4",
+    "morgan": "1.7.0"
+  }
 }
